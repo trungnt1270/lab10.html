@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width-device-width, initial-scale-1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function (){
+      $('#cbShowPassword').click(function (){
+        $('#txtPassword').attr('type', $(this).is(':checked') ? 'text' : 'password');
+      });
+      $('input[name="language"').click(function (){
+        getSelectedCheckBoxes('language');
+      });
+      var getSelectedCheckBoxes = function (groupName) {
+        var result = $('input[name="' + groupName + '"]:checked');
+        if(result.length > 0){
+          var resultString = result.length + " language(s) checked <br/>";
+          result.each(function (){
+            resultString += $(this).val() + "<br/>";
+          });
+          $('#div' + groupName).html(resultString);
+        }
+        else {
+          $('#div' + groupName).html("No checkbox checked");
+        }
+      };
+    });
+    function validataEmail(){
+      var emailTextBox = document.getElementById('email');
+      var email = emailTextBox.value;
+      var emaiilRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}]
+      emailTextBox.style.color = "white";
+      if(emaiilRegEx.test(email))
+      {
+        emailTextBox.style.backgroundColor = "Green";
+      }
+      else{
+        emailTextBox.style.backgroundColor = "Red";
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+  <h2>Login Page</h2>
+  <form>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="password" class="form-control" id="txtPassword" placeholder="Enter password">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="cbShowPassword">Show Password</label>
+    </div>
+    <div class="form-group">
+<button type="submit" class="btn btn-default">Submit</button>
+    </div>
+    <div class="form-group">
+      Known Langueges
+      <div class="checkbox">
+        <label><input type="checkbox" name="language" value="English">English</label><br>
+        <label><input type="checkbox" name="language" value="German">German</label>
+      </div>
+      Selected Langduages: <br>
+      <label><div id="divlanguage"></div> </label> <br>
+    </div>
+  </form>
+</div>
+</body>
+</html>
